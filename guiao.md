@@ -1,12 +1,31 @@
--> O que é o git?
-	Todos já tivemos que fazer trabalhos de grupo, onde várias pessoas contribuem para o mesmo source code. Surgue imeadiatamente o problema de partilha de código do projeto. Muita gente neste caso recorre a metodos bastante arcaicos, como exemplo, enviar o mesmo ficheiro para trás e para a frente num grupo de Discord, ou então usar um google doc para que toda a gente tenha o projeto em dia. Obviamente tem que haver uma maneira mais fácil de partilhar código, manter um log de versões e assinalar as alterações entre cada versão e as contribuições de cada participante. o Git a ferramenta que toda industria usa, e resolve exatamente todos esses problemas.
-	
-    Para gerir um projeto, o git cria algo que se chama um repositório. Este está contido na pasta ".git", e pode ser local ou remoto. Um repo local é aquele que nós temos nas nossas máquinas locais, onde só nós conseguimos alterar. O repo remoto está num servidor algures na internet, onde toda a gente que tenha as credenciais para aceder consegue submeter commits.
-    
-    É para isto que servem serviços como o GitHub e o GitLab: sites que permitem aos seus utilizadores terem repositórios remotos, publicos ou privados, facilitando assim a gestão de grandes projetos com vários participantes. Estes serviços, como vamos demonstrar, oferecem tambêm outras features como "Issues" e diferentes níveis de permissões para aceder a branches.
+Boa Tarde, sejam bem-vindos ao **workshop de git**.
 
-	Uma coisa importante dos repositórios git, é que são basicamente bases de dados descentralizadas. Toda a gente que tem o repositório tem uma versão do estado do projeto da altura em que fez download (pull) da ultima vez. Deste modo, Nao importa se o repositorio é apagado do computador de um dos contribuidores ou até mesmo do servidor onde o repositório está a ser remotamente guardado, é sempre possível recupera-lo e redistribui-lo. A utilidade desta funcionalidade foi demonstrada pelo Gitlab quando em 2017 um dos funcionarios acidentalmente apagou nao só a base de dados principal e a de backup que continham todos os repositórios git, e tiveram que dar rollback para uma versão da base de dados 6 horas antes do incidente, nao estando portanto atualizada. Felizmente, apesar dos repositorios remotos não estarem atualizados, todos os projetos cujos membros tinham os seus repositórios locais em dia, conseguiram devolver os repos remotos ao seu estado mais atualizado apenas dando push. (para um reconto desta história: https://youtu.be/tLdRBsuvVKc)
-	
+Hoje venho ensinar-vos os básicos do git e github/gitlab. Para começar, é importante dizer que Git e GitHub/GitLab não são a mesma coisa. Git é uma ferramenta de controlo de versões, enquanto que o GitHub e GitLab são plataformas onde podemos armazenar e partilhar o código que usamos com o Git.
+
+Agora, vamos começar por focar-nos no Git. 
+O Git foi criado em 2005 por Linus Torvalds, o criador do Linux, para resolver problemas que muitos de nós enfrentamos, como a partilha de código entre membros de um grupo. Provavelmente já se viram a trabalhar em projetos de grupo onde tinham de partilhar ficheiros de código através do WhatsApp ou Discord – um método complicado e propenso a erros. O Git foi criado exatamente para resolver isso.
+
+Os principais objetivos do git são:
+
+- Ser **Veloz**
+
+- Ser um **projeto simples**
+
+- Suportar o **desenvolvimento não-linear**: ou seja, várias partes de um projeto podem ser desenvolvidas em paralelo, sem interferirem umas com as outras.
+
+- Ser **completamente distribuído**: ou seja, o Git permite que cada pessoa tenha uma cópia completa de todo o projeto, incluindo o histórico de todas as versões e alterações feitas.
+
+-> Introduzir o exemplo:
+        A utilidade desta funcionalidade foi demonstrada em 2017, quando um funcionário do GitLab acidentalmente apagou a base de dados principal e a de backup. Felizmente, como o Git é distribuído, muitos desenvolvedores tinham cópias locais atualizadas, o que permitiu restaurar os seus projetos para o estado mais recente.
+
+Por último:
+
+- É capaz de lidar com projetos grandes como é o caso do kernel linux(que é o núcleo do sistema operativo linux).
+
+Atualmente o git é uma ferramenta bastante utilizada na industria, para terem uma ideia, 93% dos inquiridos numa sondagem de 2022 do Stack Overflow afirmaram usar Git. o que demonstra a importância desta ferramenta, tanto para a universidade como para o mercado de trabalho.
+<https://survey.stackoverflow.co/2022/#version-control-version-control-system>
+--Fiz até aqui basicamente--
+
     Uma caracteristica interessante do git, é o modo como ele guarda versões. Obviamente ter uma cópia do projeto em cada versão seria muito dispendioso em termos de espaço. Seria quase como ter um monte de pastas chamadas "projeto_v1", "projeto_v2", "projeto_v3" e por ai a diante, onde cada pasta tem os mesmos ficheiros praticamente iguais, com apenas pequenas diferenças entre eles. Em vez disso, o git guarda apenas o que varia de uma versão para a outra. Deste modo, tudo o que uma versão nova tem que ter, é alguma maneira de indicar qual é a versão anterior, e quais são as diferenças da versão antiga para esta. (Um exemplo seria, "(ll5) -- ola bom dia" (ll5)"++ adeus boa noite"). Assim, para reconstruir um projeto a partir do log de versões git, partimos desde o primeiro commit, e avançamos versão a versão reconstruindo lentamente os ficheiros que estão no repo.
 
 
