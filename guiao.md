@@ -28,6 +28,7 @@ Atualmente o git é uma ferramenta bastante utilizada na industria, para terem u
 **PARTE PRÁTICA DO WORKSHOP**
 
 -> **Comandos do git**
+
 	O git é uma ferramenta que não contém uma Interface Gráfica isto quer dizer que os comandos são escritos num terminal, mas existem ferramentas com interface gráfica que vamos demonstrar mais à frente. 
  -----------------------------------------------------------------------------
 -  git init
