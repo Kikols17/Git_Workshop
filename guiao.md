@@ -40,7 +40,6 @@ git init
 
 ### `git clone`
 	No entanto, quando estamos a trabalhar em grupo, raramente somos nós a criar o repositório. Para isso, existe o comando git clone <url>, onde <url> refere-se à localização do repositório remoto que estamos a clonar.
-bash
 
 ### `git clone <url>`
 
@@ -92,8 +91,6 @@ git pull
 Este comando obtém as alterações do repositório remoto e atualiza o nosso repositório local. Se tivermos alterações locais, o Git irá conciliar automaticamente as versões, preservando as nossas alterações e adicionando as do remoto.
 
 ---
-
-Este comando atualiza o nosso repositório local com as alterações mais recentes do remoto. Depois de o fazer, podemos correr novamente o comando `git push`, e assim, tanto o repositório local como o remoto estarão sincronizados. Nenhuma informação se perde.
 
 **Nota importante**:  
 Nunca se deve usar o comando com as flags `-f` ou `--force` (como em `git push --force`), pois isso significa que estamos a forçar o Git a fazer algo que normalmente não deveria ser feito. Forçar operações no Git pode resultar em perda de dados ou conflitos graves.
