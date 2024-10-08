@@ -28,26 +28,19 @@ Atualmente o git é uma ferramenta bastante utilizada na industria, para terem u
 **Parte Prática do Workshop**
 
 -> Comandos do Git
-	- O Git é uma ferramenta que não contém uma interface gráfica, o que significa que os
- comandos são escritos num terminal. No entanto, existem ferramentas com interface gráfica, que vamos demonstrar mais à frente.
+	- O Git é uma ferramenta que não contém uma interface gráfica, o que significa que os comandos são escritos num terminal. No entanto, existem ferramentas com interface gráfica, que vou demonstrar mais à frente.
+
 ### `git init`
 	Para começar, vamos criar o nosso repositório local. Há duas maneiras de fazer isto: init e clone. Começando com o init, criamos uma pasta nova e abrimos o terminal nesse diretório. Depois, escrevemos:
  
 ```bash
 git init
 ```
-	Se virmos os ficheiros escondidos, podemos verificar que foi criada uma pasta chamada .git. Este diretório contém todo o log do repositório e não deve ser alterado manualmente. É o Git que gere este conteúdo.
 
-### `git clone`
-	No entanto, quando estamos a trabalhar em grupo, raramente somos nós a criar o repositório. Para isso, existe o comando git clone <url>, onde <url> refere-se à localização do repositório remoto que estamos a clonar.
-
-### `git clone <url>`
-
-	Ao fazer isto, é criada uma nova pasta com o nome do repositório clonado, e podemos ver todos os ficheiros já 
-"committed". Se fizermos git remote get-url origin, podemos verificar que não precisamos de realizar git remote add origin <url>, pois o git clone já tratou disso.
+	Se virmos os ficheiros escondidos, podemos verificar que foi criada uma pasta chamada .git. Este diretório contém todo o log do repositório e não deve ser alterado manualmente pois é o Git que gere este conteúdo.
 
 ### `git add .`
-	Como é que realizamos alterações aos nossos ficheiros no repositório? Não basta editar um ficheiro de texto e guardá-lo; precisamos de informar o Git que essas alterações fazem parte de uma nova versão do projeto. O primeiro passo é adicionar as alterações ao staging. Para isso, fazemos:
+	Para realizar alterações aos nossos ficheiros, não basta editar um ficheiro de texto ou de código e guardá-lo; precisamos de informar o Git que essas alterações fazem parte de uma nova versão do projeto. O primeiro passo é adicionar as alterações ao staging(Que nada mais é de uma etapa antes de cofnrimar as alterações, como se fosse um botão de "tem a certeza que quer fechar este programa?"). Para isso, fazemos:
 ```bash
 git add <name_file>
 ```
@@ -65,9 +58,34 @@ Que adiciona todas as alterações realizadas.
 ```bash
 git commit -m "<mensagem>"
 ```
-Onde o -m refere-se à mensagem do commit. As mensagens devem ser concisas e informativas sobre o que foi alterado. Elas ajudam a equipa a entender o que cada commit fez, contribuindo para o desenvolvimento do projeto.(São avaliadas a ES)
+Onde o -m refere-se à mensagem do commit. As mensagens devem ser concisas e informativas sobre o que foi alterado. Elas ajudam a equipa a entender o que cada commit fez, contribuindo para o desenvolvimento do projeto.(vale também a pena mencionar que são avaliadas a ES)
+
+Para acedermos ao histórico de Versões podemos utilizar o comando:
+
+### git log
+
+Para ver o histórico de versões utilizamos este comando, onde podemos retirar a hash dos commits para voltar atrás no código utilizando o comando:
 
 ---
+
+### git checkout 'hash do commit'
+
+Este comando volta para o estado do commit indicado pela hash
+
+---
+**Fazer demonstração voltando atrás numa alteração feita**
+
+
+## Parte Remote do git
+
+### `git clone`
+	No entanto, quando estamos a trabalhar em grupo, raramente somos nós a criar o repositório. Para isso, existe o comando git clone <url>, onde <url> refere-se à localização do repositório remoto que estamos a clonar.
+
+### `git clone <url>`
+
+	Ao fazer isto, é criada uma nova pasta com o nome do repositório clonado, e podemos ver todos os ficheiros já 
+"committed". Se fizermos git remote get-url origin, podemos verificar que não precisamos de realizar git remote add origin <url>, pois o git clone já tratou disso.
+
 ### `git push`
 	Depois de fazermos o commit com todas as alterações, se estivermos a trabalhar num projeto com um repositório remoto, precisamos de **atualizar também o repositório remoto**. Isto é feito com o comando:
 
@@ -81,6 +99,10 @@ Este comando atualiza automaticamente o repositório remoto para refletir as alt
 Se aparecer uma mensagem como *"failed to push some refs to..."*, significa que alguém atualizou o repositório remoto desde a última vez que fizemos push. Para resolver, basta utilizar:
 
 
+**Nota importante**:  
+Nunca se deve usar o comando com as flags `-f` ou `--force` (como em `git push --force`), pois isso significa que estamos a forçar o Git a fazer algo que normalmente não deveria ser feito. Forçar operações no Git pode resultar em perda de dados ou conflitos graves.
+
+
 ### `git pull`
 	Se o nosso repositório local estiver **desatualizado** em relação ao repositório remoto, usamos o comando:
 
@@ -90,78 +112,59 @@ git pull
 
 Este comando obtém as alterações do repositório remoto e atualiza o nosso repositório local. Se tivermos alterações locais, o Git irá conciliar automaticamente as versões, preservando as nossas alterações e adicionando as do remoto.
 
----
+## Parte dos branches:
 
-**Nota importante**:  
-Nunca se deve usar o comando com as flags `-f` ou `--force` (como em `git push --force`), pois isso significa que estamos a forçar o Git a fazer algo que normalmente não deveria ser feito. Forçar operações no Git pode resultar em perda de dados ou conflitos graves.
+Depois de entender como trabalhamos com repositórios locais e remotos usando comandos como git clone, commit, push e pull, é importante perceber que, muitas vezes, não estamos a trabalhar diretamente na branch principal, mas sim em branches separadas.
 
----
+As Branches são a ferramenta que destingue o git dos outros sistemas de controlo de versões, elas permitem-nos trabalhar em funcionalidades, correções ou testes isolados, sem afetar o código principal até estarmos prontos para integrar as nossas alterações. Para perceber melhor essa parte vamos então observar a seguinte imagem. (depois de explicar minimamente a imagem do francisco) vamos então explorar os comandos mais importantes para gerir branches.
 
-### `git merge`
-	Por vezes, é necessário reconciliar duas branches com alterações incompatíveis. Para isso, usamos o comando:
+Para começar para criar um branch utilizamos o comando:
 
-```bash
-git merge
-```
+### git branch 'nome_do_branch'
 
-Durante o merge, o Git mostrará as zonas problemáticas (conflitos), e podemos escolher manualmente quais as alterações que devem prevalecer.
-
----
-### `git remote`
-	Depois de criar a nossa repo local, na maior parte das vezes queremos coloca-la num repositório remoto como o gitlab ou github. Para isso temos que ir a um desses sites, e criar um local para o nosso repositório. Depois voltamos ao nosso terminal, e informa-mos o git que este nosso repositório local tem um repo remoto tambem, e sempre que realizamos push ou pull, queremos faze-los relativamente a esse repositório. Para isso, escrevemos "git remote add origin <url>". Deste modo, o git sabe que este repo tem uma versão remota no url <url>, com o nome "origin". Para confirmar isso, podemos fazer "git remote get-url origin", que se o remote "origin" existir, escreve no ecrã o url a que este se refere, e onde se localiza o nosso remote repo.
----
-
-### Comandos com Branches
-
-- **Criar uma nova branch**:
-    ```bash
-    git branch <nome>
-    ```
-    Este comando cria uma nova branch que aponta para o commit mais recente.
-
-- **Mudar para uma branch existente**:
-    ```bash
-    git checkout <nome-branch>
-    ```
-    Este comando permite trocar de branch.
-
-- **Criar e mudar para uma nova branch (a partir da versão 2.23)**:
-    ```bash
-    git switch -c <nome-branch>
-    ```
-    Com este comando, podemos criar e mudar para uma nova branch em apenas uma linha. Para voltar à branch anterior:
-    ```bash
-    git switch -
-    ```
-
-- **Renomear uma branch local**:
-    ```bash
-    git branch --move <antigo-nome> <novo-nome>
-    ```
-    Este comando altera o nome de uma branch localmente.
-
-- **Atualizar a branch no repositório remoto**:
-    ```bash
-    git push --set-upstream origin <novo-nome>
-    ```
-    Para refletir a mudança de nome no repositório remoto, devemos fazer push.
-
-- **Eliminar uma branch no repositório remoto**:
-    ```bash
-    git push origin --delete <antigo-nome>
-    ```
+Este comando cria uma nova branch que aponta para o commit mais recente. O que pode ser útil quando queremos começar a trabalhar numa nova funcionalidade sem afetar o código atual.
 
 ---
 
-### Tarefas Adicionais após Alterar o Nome de uma Branch:
-Se alterares o nome de uma branch importante, deves realizar algumas tarefas extra para garantir que tudo funciona corretamente:
-1. Atualizar projetos que dependem desse repositório.
-2. Ajustar ficheiros de configuração de runners de teste.
-3. Modificar scripts de build e release.
-4. Redirecionar configurações no repositório, como a branch padrão ou regras de merge.
-5. Atualizar referências ao nome antigo da branch na documentação.
-6. Fechar ou fazer merge de *pull requests* que estejam a usar a branch antiga.
+### git checkout 'nome_do_branch'
 
+Este comando permite alternar para uma branch existente, ou no nosso exemplo, recém criada. Para que possamos trabalhar nela.
+
+---
+Acho que vale a pena referir que a partir da versão 2.23, para se criar e mudar para essa branch, recém criada. Se pode utilizar logo o comando:
+
+### git switch -c 'nome_do_branch'
+
+---
+## Para gerirmos Branches Locais e Remotas
+
+    Renomear uma branch local:
+
+### git branch --move 'nome_antigo' 'novo_nome'
+
+Se quiseres alterar o nome de uma branch local, usa este comando. É útil para corrigir nomes de branches sem criar novas.
+
+Mas para atualizarmos a branch num repositório remoto já temos que utilizar:
+
+### git push --set-upstream origin 'novo-nome'
+
+Este comando atualiza o repositório remoto com a nova branch ou as mudanças feitas ao nome da branch local.
+
+Para eliminarmos uma branch no repositório remoto podemos usar:
+
+### git push origin --delete 'antigo-nome'
+
+Para apagar uma branch remota, utilizamos este comando, geralmente depois de ter feito merge ou de a branch já não ser necessária.
+
+---
+## Merge de Branches
+
+Depois de termos feito as alterações na nossa branch e estivermos prontos para integrar o nosso trabalho na branch principal(ou na dev), precisamos de fazer o merge. Para isso, usamos:
+
+### git merge 'nome-branch'
+
+O comando git merge combina as alterações da branch especificada com a branch atual. Se houver conflitos, o Git alertará para que escolhas manualmente as alterações que devem prevalecer e para isso surge o visual studio code:
+Ver disto amanhã
 ---
 
 -> **Para o GITLAB/GITHUB**
