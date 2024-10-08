@@ -78,22 +78,20 @@ Este comando volta para o estado do commit indicado pela hash
 
 ## Parte Remote do git
 
-### `git clone`
-	No entanto, quando estamos a trabalhar em grupo, raramente somos nós a criar o repositório. Para isso, existe o comando git clone <url>, onde <url> refere-se à localização do repositório remoto que estamos a clonar.
+Quando estamos a trabalhar em equipa, é comum já existir um repositório remoto criado, que serve como ponto central para o código. Nesse caso, em vez de criar o nosso próprio repositório, o primeiro passo é clonar o repositório remoto para o nosso ambiente local. Para isso, usamos o comando:
 
-### `git clone <url>`
+### git clone 'url'
 
-	Ao fazer isto, é criada uma nova pasta com o nome do repositório clonado, e podemos ver todos os ficheiros já 
-"committed". Se fizermos git remote get-url origin, podemos verificar que não precisamos de realizar git remote add origin <url>, pois o git clone já tratou disso.
+Este comando faz uma cópia completa do repositório remoto para o nosso computador, incluindo o histórico de commits e todos os ficheiros. Assim que o repositório é clonado, podemos começar a fazer as nossas alterações no código localmente.
 
-### `git push`
-	Depois de fazermos o commit com todas as alterações, se estivermos a trabalhar num projeto com um repositório remoto, precisamos de **atualizar também o repositório remoto**. Isto é feito com o comando:
-
-```bash
+Agora que já temos o repositório clonado e podemos trabalhar no projeto, é importante lembrar que, após fazermos as nossas alterações e confirmá-las com git commit, também precisamos de sincronizar essas alterações com o repositório remoto, para que o restante da equipa possa ver as nossas mudanças.
 git push
-```
 
-Este comando atualiza automaticamente o repositório remoto para refletir as alterações que realizámos localmente.
+Depois de fazermos o commit com todas as alterações, precisamos enviar essas mudanças para o repositório remoto, de forma a manter o projeto atualizado e disponível para os outros colaboradores. Para isso, utilizamos o comando:
+
+### git push
+
+O comando git push atualiza automaticamente o repositório remoto, refletindo todas as alterações que fizemos localmente.
 
 **Erro comum**:  
 Se aparecer uma mensagem como *"failed to push some refs to..."*, significa que alguém atualizou o repositório remoto desde a última vez que fizemos push. Para resolver, basta utilizar:
@@ -142,7 +140,7 @@ Acho que vale a pena referir que a partir da versão 2.23, para se criar e mudar
 
 ### git branch --move 'nome_antigo' 'novo_nome'
 
-Se quiseres alterar o nome de uma branch local, usa este comando. É útil para corrigir nomes de branches sem criar novas.
+Se quiseres alterar o nome de uma branch local, usa-se este comando. É útil para corrigir nomes de branches sem criar novas.
 
 Mas para atualizarmos a branch num repositório remoto já temos que utilizar:
 
