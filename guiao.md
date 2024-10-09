@@ -29,10 +29,10 @@ Atualmente o git é uma ferramenta bastante utilizada na industria, para terem u
 
 -> Comandos do Git
 
-- O Git é uma ferramenta que não contém uma interface gráfica, o que significa que os comandos são escritos num terminal. No entanto, existem ferramentas com interface gráfica, que vou demonstrar mais à frente com o visual studio code.
+- O Git é uma ferramenta que não contém uma interface gráfica, o que significa que os comandos são escritos num terminal. No entanto, existem ferramentas com interface gráfica que vou demonstrar mais à frente com o visual studio code.
 ### git init
 
-Para começar, vamos criar o nosso repositório local. Que nada mais é do que um projeto. Há duas maneiras de fazer isto: init e clone. Sendo o init um comando local e o clone um comando que se usa para ir buscar repositórios(ou projetos) ao github/gitlab. Começando com o init, criamos uma pasta nova e abrimos o terminal nesse diretório. Depois, escrevemos:
+Para começar, vamos criar o nosso repositório local, que nada mais é do que um projeto. Há duas maneiras de fazer isto: init e clone. Sendo o init um comando local e o clone um comando que se usa para ir buscar repositórios(ou projetos) ao github/gitlab. Começando com o init, criamos uma pasta nova e abrimos o terminal nesse diretório. Depois, escrevemos:
 
 ```bash
 
@@ -48,7 +48,7 @@ Se virmos os ficheiros escondidos, podemos verificar que foi criada uma pasta ch
 
 ### git add .
 
-Para realizar alterações aos nossos ficheiros, não basta editar um ficheiro de texto ou de código e guardá-lo; precisamos de informar o Git que essas alterações fazem parte de uma nova versão do projeto. O primeiro passo é adicionar as alterações ao staging(Que nada mais é de uma etapa antes de confirmar as alterações, como se fosse um botão de "tem a certeza que quer fechar este programa?"). Para isso, fazemos:
+Para realizar alterações aos nossos ficheiros, não basta editar um ficheiro de texto ou de código e guardá-lo; precisamos de informar o Git que essas alterações fazem parte de uma nova versão do projeto. O primeiro passo é adicionar as alterações ao staging(Que é uma etapa de confirmação). Para isso, fazemos:
 
 ```bash
 
@@ -84,7 +84,7 @@ git commit -m "<mensagem>"
 
 ```
 
-Onde o -m refere-se à mensagem do commit. As mensagens devem ser concisas e informativas sobre o que foi alterado. Elas ajudam a equipa a entender o que cada commit fez, contribuindo para o desenvolvimento do projeto.(vale também a pena mencionar que são avaliadas a ES)
+Onde o -m se refere à mensagem do commit. As mensagens devem ser concisas e informativas sobre o que foi alterado. Elas ajudam a equipa a entender o que cada commit fez, contribuindo para o desenvolvimento do projeto.(vale também a pena mencionar que são avaliadas a ES)
 
   
 
@@ -125,7 +125,7 @@ Este comando volta para o estado do commit indicado pela hash
 
 Todos os comandos que mencionei até agora são locais, ou seja, são para projetos individuais que ficam armazenados no nosso computador.
 
-Mas quando estamos a trabalhar em equipa, com outros colegas, queremos todos ter o mesmo repositório e é aqui que entra uma plataforma como o github. Tudo o que vou falar para o github serve também para o gitlab mas neste workshop vamos só trabalhar com o github pois o processo de criação de conta é mais simples no github. Bem para começar, o primeiro passo é configurar as credenciais para quando formos executar comandos que façam alterações no servidor não termos de colocar o Username e o token todas as vezes.
+Mas quando estamos a trabalhar em equipa, com outros colegas, queremos todos ter o mesmo repositório no mesmo estado e é aqui que entra uma plataforma como o github. Tudo o que vou falar para o github serve também para o gitlab mas neste workshop vamos só trabalhar com o github pois o processo de criação de conta é mais simples no github. Bem para começar, o primeiro passo é configurar as credenciais para quando formos executar comandos que façam alterações no servidor não termos de colocar o Username e o token todas as vezes.
 - Aceder ao site
 - Explicar o processo
 - Criar um ficheiro de texto no desktop
@@ -145,14 +145,14 @@ Este comando faz uma cópia completa do repositório remoto para o nosso computa
 	Se o repositório for privado, para clonar é necessário estar como colaborador do mesmo. Mas como este é público não é preciso
 
 	
-Agora que já temos o repositório clonado e podemos trabalhar no projeto, é importante lembrar que após fazermos as nossas alterações e confirmá-las com git commit, também precisamos de sincronizar essas alterações com o repositório remoto, para que os membros ou líder da equipa possam ver as nossas mudanças.
+Agora que já temos o repositório clonado e podemos trabalhar no projeto, é importante lembrar que após fazermos as nossas alterações e confirmá-las com git commit, também precisamos de sincronizar essas alterações com o repositório remoto, para que os membros ou os líderes das equipas possam ver as nossas mudanças.
 Para isso damos:
 
 ### git push
 
   
 
-Que nada mais é do que enviar essas mudanças para o repositório remoto, de forma a manter o projeto atualizado e disponível para os outros colaboradores. Para isso, utilizamos o comando:
+O comando consiste em enviar essas mudanças para o repositório remoto, de forma a manter o projeto atualizado e disponível para os outros colaboradores. Para isso, utilizamos o comando:
 
   
 ```bash
@@ -165,7 +165,7 @@ O comando git push atualiza automaticamente o repositório remoto, refletindo to
 
 ### git pull
 
-Após nós enviarmos as alterações para o servidor. Os restantes colaboradores precisam de atualizar o seu repositório, e por isso usamos o comando:
+Após nós enviarmos as alterações para o servidor, os restantes colaboradores precisam de atualizar o seu repositório, e por isso usamos o comando:
 
   
 
@@ -195,16 +195,16 @@ Nunca se deve usar o comando com as flags `-f` ou `--force` (como em `git push -
 
   
 
-Depois de entender como trabalhamos com repositórios locais e remotos usando comandos como git clone, commit, push e pull, é importante perceber que, muitas vezes, não estamos a trabalhar diretamente na branch principal, mas sim em branches separadas.
+Depois de entender como trabalhamos com repositórios locais e remotos é importante perceber que, muitas vezes, não estamos a trabalhar diretamente na branch principal, mas sim em branches separadas.
 
   
 
-As Branches são a ferramenta que nos permite trabalhar em funcionalidades, correções ou testes isolados, sem afetar o código principal até estarmos prontos para integrar as nossas alterações. Para perceber melhor essa parte vamos então observar a seguinte imagem. (depois de explicar minimamente a imagem do francisco) vamos então explorar os comandos mais importantes para gerir branches.
+As Branches são uma ferramenta que nos permite trabalhar em funcionalidades, correções ou testes isolados, sem afetar o código principal até estarmos prontos para integrar as nossas alterações. Para perceber melhor essa parte vamos então observar a seguinte imagem. (depois de explicar minimamente a imagem do francisco) vamos então explorar os comandos mais importantes para gerir branches.
 
   
 
 ## Comandos de Branches
-Para começar para criar um branch utilizamos o comando:
+Para criar um branch utilizamos o comando:
 
 ### git branch 'nome_do_branch'
 
@@ -228,7 +228,7 @@ Este comando permite alternar para uma branch existente, ou no nosso exemplo, re
 
 ---
 
-Acho que vale a pena referir que a partir da versão 2.23, para se criar e mudar para essa branch, recém criada. Se pode utilizar logo o comando:
+Acho que vale a pena referir que a partir da versão 2.23, para se criar e alternar para essa branch, recém criada. Se pode utilizar logo o comando:
 
   
 
@@ -292,9 +292,10 @@ Depois de termos feito as alterações na nossa branch e estivermos prontos para
 
   
 
-O comando git merge combina as alterações da branch especificada com a branch atual. Se houver conflitos, o Git alertará para que escolhas manualmente as alterações que devem prevalecer e para isso surge o visual studio code:
+O comando git merge combina as alterações da branch especificada com a branch atual. Quando duas pessoas fazem alterações ao mesmo podem existir conflitos. E agora na Demo vamos observar isso mesmo.
+- Conflitos podem ser resolvidos no visual studio
 
-Ver disto amanhã
+---
 
 -> **Para o GITLAB/GITHUB**
 	O Github e Gitlab, como já referimos, são sites de hosting de repos, mas têm tambêm algumas funcionalidades que ajudam o desenvolvimento. São praticamente identicos em features. O GitLab é considerado o preferido das grandes empressas, é open-source, e é pago (felizmente com o programa alunos, é possível criar conta gratuita com o mail da UC). O GitHub é o mais utilizado e considerado mais acessível, e como é propriedade da microsoft, ganha dinheiro da pior maneira possível: a maneira do costume, utilizando as repos para treinar o Copilot. É tambêm notável de dizer que com o mail da UC no site do GitHub é possível conseguir o Copilot de graça, mas pela minha experiencia não consigo recomendar a sua utilização para mais do que trabalhos extremamente simples. [Depois muda isto, dado que és tu que vais dizer, dá a tua recomendação, esta é apenas a minha]
